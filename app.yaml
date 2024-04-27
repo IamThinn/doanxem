@@ -1,4 +1,4 @@
-runtime: php74  # hoặc php80
+runtime: php
 api_version: 1
 
 handlers:
