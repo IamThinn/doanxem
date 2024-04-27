@@ -1,0 +1,51 @@
+runtime: php74  # hoặc php80
+api_version: 1
+
+handlers:
+- url: /(.*\.(htm|html|css|js))
+  static_files: \1
+  upload: /(.*\.(htm|html|css|js))$
+
+- url: /wp-content/(.*\.(ico|jpg|jpeg|png|gif|woff|ttf|otf|eot|svg))
+  static_files: wp-content/\1
+  upload: /wp-content/(.*\.(ico|jpg|jpeg|png|gif|woff|ttf|otf|eot|svg))$
+
+- url: /(.*\.(ico|jpg|jpeg|png|gif|woff|ttf|otf|eot|svg))
+  static_files: \1
+  upload: /(.*\.(ico|jpg|jpeg|png|gif|woff|ttf|otf|eot|svg))$
+
+- url: /wp-includes/images/media/(.*\.(ico|jpg|jpeg|png|gif|woff|ttf|otf|eot|svg))
+  static_files: wp-includes/images/media/\1
+  upload: /wp-includes/images/media/(.*\.(ico|jpg|jpeg|png|gif|woff|ttf|otf|eot|svg))$
+
+- url: /wp-admin/(.+)
+  script: wp-admin/\1
+  secure: always
+
+- url: /wp-admin/
+  script: wp-admin/index.php
+  secure: always
+
+- url: /wp-login.php
+  script: wp-login.php
+  secure: always
+
+- url: /wp-cron.php
+  script: wp-cron.php
+  login: admin
+
+- url: /xmlrpc.php
+  script: xmlrpc.php
+
+- url: /wp-(.+).php
+  script: wp-\1.php
+
+- url: /(.+)?/?
+  script: index.php
+
+skip_files:
+- ^(.*/)?.zip$
+- ^(.*/)?.bat$
+- ^(.*/)?.sh$
+- ^(.*/)?.md$
+- ^vendor
